@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Reading Linux permissions: ls -l output</text>
+
+  <g font-family="Consolas, Menlo, monospace" font-size="30" font-weight="700">
+    <rect x="80" y="70" width="44" height="54" rx="6" fill="#e2e8f0"/><text x="102" y="108" text-anchor="middle" fill="#334155">-</text>
+    <rect x="132" y="70" width="44" height="54" rx="6" fill="#dbeafe"/><text x="154" y="108" text-anchor="middle" fill="#1d4ed8">r</text>
+    <rect x="180" y="70" width="44" height="54" rx="6" fill="#dbeafe"/><text x="202" y="108" text-anchor="middle" fill="#1d4ed8">w</text>
+    <rect x="228" y="70" width="44" height="54" rx="6" fill="#dbeafe"/><text x="250" y="108" text-anchor="middle" fill="#1d4ed8">x</text>
+    <rect x="284" y="70" width="44" height="54" rx="6" fill="#dcfce7"/><text x="306" y="108" text-anchor="middle" fill="#15803d">r</text>
+    <rect x="332" y="70" width="44" height="54" rx="6" fill="#dcfce7"/><text x="354" y="108" text-anchor="middle" fill="#15803d">-</text>
+    <rect x="380" y="70" width="44" height="54" rx="6" fill="#dcfce7"/><text x="402" y="108" text-anchor="middle" fill="#15803d">x</text>
+    <rect x="436" y="70" width="44" height="54" rx="6" fill="#fee2e2"/><text x="458" y="108" text-anchor="middle" fill="#b91c1c">-</text>
+    <rect x="484" y="70" width="44" height="54" rx="6" fill="#fee2e2"/><text x="506" y="108" text-anchor="middle" fill="#b91c1c">-</text>
+    <rect x="532" y="70" width="44" height="54" rx="6" fill="#fee2e2"/><text x="554" y="108" text-anchor="middle" fill="#b91c1c">-</text>
+    <text x="600" y="108" font-size="24" font-weight="400" fill="#0f172a">deploy  www-data  app.sh</text>
+  </g>
+
+  <g font-size="14">
+    <text x="102" y="150" text-anchor="middle" fill="#334155">type</text>
+    <text x="202" y="150" text-anchor="middle" font-weight="700" fill="#1d4ed8">USER (owner)</text>
+    <text x="354" y="150" text-anchor="middle" font-weight="700" fill="#15803d">GROUP</text>
+    <text x="506" y="150" text-anchor="middle" font-weight="700" fill="#b91c1c">OTHERS</text>
+    <text x="660" y="150" fill="#1d4ed8">owner</text>
+    <text x="752" y="150" fill="#15803d">group</text>
+    <text x="202" y="172" text-anchor="middle" fill="#1d4ed8">4+2+1 = 7</text>
+    <text x="354" y="172" text-anchor="middle" fill="#15803d">4+0+1 = 5</text>
+    <text x="506" y="172" text-anchor="middle" fill="#b91c1c">0+0+0 = 0</text>
+    <text x="102" y="172" text-anchor="middle" fill="#334155">- file, d dir</text>
+  </g>
+  <text x="330" y="205" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">→ chmod 750 app.sh</text>
+
+  <g font-size="14" fill="#0f172a">
+    <rect x="40" y="230" width="280" height="140" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="56" y="256" font-weight="700">On a FILE</text>
+    <text x="56" y="282">r (4) = read contents</text>
+    <text x="56" y="306">w (2) = modify contents</text>
+    <text x="56" y="330">x (1) = execute as program</text>
+
+    <rect x="340" y="230" width="280" height="140" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="356" y="256" font-weight="700">On a DIRECTORY</text>
+    <text x="356" y="282">r (4) = list names (ls)</text>
+    <text x="356" y="306">w (2) = create / delete / rename</text>
+    <text x="356" y="330">x (1) = enter (cd) &amp; access files</text>
+
+    <rect x="640" y="230" width="280" height="140" rx="10" fill="#fff7ed" stroke="#fb923c"/>
+    <text x="656" y="256" font-weight="700" fill="#9a3412">Security red flags</text>
+    <text x="656" y="282">777 anywhere (world-writable)</text>
+    <text x="656" y="306">SUID root on custom binaries</text>
+    <text x="656" y="330">private keys not 600</text>
+    <text x="656" y="354">secrets readable by "others"</text>
+  </g>
+</svg>
