@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 420" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="980" height="420" fill="#ffffff"/>
+  <defs>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+  </defs>
+  <text x="490" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Encoding vs Hashing vs Encryption</text>
+  <g font-size="14" fill="#0f172a">
+    <!-- encoding -->
+    <text x="30" y="80" font-weight="700" fill="#64748b">ENCODING (Base64)</text>
+    <rect x="30" y="92" width="130" height="44" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><text x="95" y="119" text-anchor="middle">hello</text>
+    <line x1="160" y1="114" x2="290" y2="114" stroke="#334155" stroke-width="2" marker-end="url(#m)"/>
+    <text x="225" y="106" text-anchor="middle" font-size="12">no key</text>
+    <rect x="295" y="92" width="150" height="44" rx="8" fill="#f1f5f9" stroke="#94a3b8"/><text x="370" y="119" text-anchor="middle">aGVsbG8=</text>
+    <text x="470" y="108">Reversible by anyone. Format, NOT security.</text>
+    <text x="470" y="128" font-size="12" fill="#475569">Use: transporting binary data, JWT payloads (readable!)</text>
+
+    <!-- hashing -->
+    <text x="30" y="190" font-weight="700" fill="#b45309">HASHING (one-way)</text>
+    <rect x="30" y="202" width="130" height="44" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="95" y="229" text-anchor="middle">P@ssw0rd</text>
+    <line x1="160" y1="224" x2="290" y2="224" stroke="#334155" stroke-width="2" marker-end="url(#m)"/>
+    <text x="225" y="216" text-anchor="middle" font-size="12">+ salt, slow</text>
+    <rect x="295" y="202" width="150" height="44" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="370" y="229" text-anchor="middle" font-size="12">$argon2id$v=19$…</text>
+    <text x="470" y="218">Cannot be reversed; you compare by re-hashing.</text>
+    <text x="470" y="238" font-size="12" fill="#475569">Use: password storage (Argon2id/bcrypt), integrity checks (SHA-256)</text>
+
+    <!-- encryption -->
+    <text x="30" y="300" font-weight="700" fill="#15803d">ENCRYPTION (two-way, needs key)</text>
+    <rect x="30" y="312" width="130" height="44" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="95" y="339" text-anchor="middle">card 4111…</text>
+    <line x1="160" y1="334" x2="290" y2="334" stroke="#334155" stroke-width="2" marker-end="url(#m)"/>
+    <text x="225" y="326" text-anchor="middle" font-size="12">🔑 key</text>
+    <rect x="295" y="312" width="150" height="44" rx="8" fill="#dcfce7" stroke="#16a34a"/><text x="370" y="339" text-anchor="middle" font-size="12">9f2c…e1 (ciphertext)</text>
+    <text x="470" y="328">Reversible only with the key. Protects confidentiality.</text>
+    <text x="470" y="348" font-size="12" fill="#475569">Use: data at rest (AES-GCM), in transit (TLS). Key management is the hard part.</text>
+  </g>
+  <text x="490" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#b91c1c">Rule: passwords are HASHED (slow + salted) — never encrypted, never encoded, never plain.</text>
+</svg>
