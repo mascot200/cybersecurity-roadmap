@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="430" fill="#ffffff"/>
+  <text x="500" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Anatomy of a JWT — and what a verifier must check</text>
+
+  <g font-family="Consolas, Menlo, monospace" font-size="15" font-weight="700">
+    <text x="60" y="80" fill="#dc2626">eyJhbGciOiJFUzI1NiJ9</text>
+    <text x="258" y="80" fill="#0f172a">.</text>
+    <text x="270" y="80" fill="#7c3aed">eyJzdWIiOiJ1c2VyLTEyMyIsInJvbGUiOi…</text>
+    <text x="630" y="80" fill="#0f172a">.</text>
+    <text x="642" y="80" fill="#0284c7">MEUCIQD3…kx8</text>
+  </g>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="40" y="105" width="270" height="170" rx="12" fill="#fef2f2" stroke="#dc2626"/>
+    <text x="175" y="130" text-anchor="middle" font-weight="700" fill="#b91c1c">HEADER (base64url JSON)</text>
+    <text x="58" y="158" font-family="Consolas, monospace">{ "alg": "ES256",</text>
+    <text x="58" y="178" font-family="Consolas, monospace">  "kid": "2026-key-1" }</text>
+    <text x="58" y="212">Attacker controls it!</text>
+    <text x="58" y="232">Never let "alg" decide how</text>
+    <text x="58" y="252">you verify. Pin it in config.</text>
+
+    <rect x="330" y="105" width="320" height="170" rx="12" fill="#f5f3ff" stroke="#7c3aed"/>
+    <text x="490" y="130" text-anchor="middle" font-weight="700" fill="#6d28d9">PAYLOAD / CLAIMS (readable!)</text>
+    <text x="348" y="158" font-family="Consolas, monospace">{ "sub": "user-123",</text>
+    <text x="348" y="178" font-family="Consolas, monospace">  "iss": "https://auth.lab.local",</text>
+    <text x="348" y="198" font-family="Consolas, monospace">  "aud": "invoices-api",</text>
+    <text x="348" y="218" font-family="Consolas, monospace">  "exp": 1793000000,</text>
+    <text x="348" y="238" font-family="Consolas, monospace">  "role": "member" }</text>
+    <text x="348" y="262">Encoded, NOT encrypted: no secrets here</text>
+
+    <rect x="670" y="105" width="290" height="170" rx="12" fill="#eff6ff" stroke="#0284c7"/>
+    <text x="815" y="130" text-anchor="middle" font-weight="700" fill="#0369a1">SIGNATURE</text>
+    <text x="688" y="158">sign(header + "." + payload,</text>
+    <text x="688" y="178">     issuer's PRIVATE key)</text>
+    <text x="688" y="212">Verify with the issuer's</text>
+    <text x="688" y="232">PUBLIC key. Any change to</text>
+    <text x="688" y="252">header or payload breaks it.</text>
+  </g>
+
+  <rect x="40" y="295" width="920" height="120" rx="12" fill="#f0fdf4" stroke="#22c55e"/>
+  <text x="60" y="322" font-size="15" font-weight="700" fill="#15803d">Verifier checklist (every request)</text>
+  <g font-size="13" fill="#14532d">
+    <text x="60" y="348">✓ Signature valid with a trusted key</text>
+    <text x="60" y="370">✓ alg is on your allowlist (never "none")</text>
+    <text x="60" y="392">✓ exp in the future (small clock skew)</text>
+    <text x="400" y="348">✓ iss is your identity provider</text>
+    <text x="400" y="370">✓ aud is THIS API</text>
+    <text x="400" y="392">✓ Required claims present (sub, exp)</text>
+    <text x="700" y="348">Then authorize: the token says</text>
+    <text x="700" y="370">who you are, your code still</text>
+    <text x="700" y="392">checks what you may access.</text>
+  </g>
+</svg>

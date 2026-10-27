@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="460" fill="#ffffff"/>
+  <defs><marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker></defs>
+  <text x="500" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">BOLA / IDOR — authenticated is not the same as authorized</text>
+
+  <g font-size="14" fill="#0f172a">
+    <rect x="30" y="70" width="190" height="80" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+    <text x="125" y="102" text-anchor="middle" font-weight="700">Alice (Acme)</text>
+    <text x="125" y="124" text-anchor="middle" font-size="12">valid token · tenant = Acme</text>
+
+    <rect x="400" y="70" width="200" height="80" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <text x="500" y="102" text-anchor="middle" font-weight="700">Invoices API</text>
+    <text x="500" y="124" text-anchor="middle" font-size="12">GET /invoices/:id</text>
+
+    <rect x="780" y="60" width="190" height="44" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="875" y="87" text-anchor="middle" font-size="13">#1 · Acme</text>
+    <rect x="780" y="112" width="190" height="44" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="875" y="139" text-anchor="middle" font-size="13">#3 · Globex (not Alice's)</text>
+
+    <line x1="220" y1="110" x2="395" y2="110" stroke="#334155" stroke-width="2" marker-end="url(#b)"/>
+    <text x="308" y="100" text-anchor="middle" font-size="12">GET /invoices/3</text>
+    <line x1="600" y1="110" x2="775" y2="132" stroke="#dc2626" stroke-width="2" marker-end="url(#b)"/>
+  </g>
+
+  <rect x="30" y="185" width="455" height="255" rx="14" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="257" y="214" text-anchor="middle" font-size="17" font-weight="700" fill="#b91c1c">❌ Vulnerable: looks up by ID only</text>
+  <g font-family="Consolas, Menlo, monospace" font-size="13" fill="#0f172a">
+    <text x="50" y="248">SELECT * FROM invoices</text>
+    <text x="50" y="268">WHERE id = $1</text>
+  </g>
+  <g font-size="13" fill="#7f1d1d">
+    <text x="50" y="304">• Token proves WHO Alice is (authentication)</text>
+    <text x="50" y="326">• Nothing checks WHETHER #3 is hers (authorization)</text>
+    <text x="50" y="348">• Sequential IDs make the next one easy to guess</text>
+    <text x="50" y="370">• Random UUIDs make guessing harder but are NOT</text>
+    <text x="50" y="390">  a fix: IDs leak in URLs, logs, emails, exports</text>
+    <text x="50" y="420" font-weight="700">#1 risk in the OWASP API Security Top 10</text>
+  </g>
+
+  <rect x="515" y="185" width="455" height="255" rx="14" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="742" y="214" text-anchor="middle" font-size="17" font-weight="700" fill="#15803d">✅ Fixed: scope every query to the caller</text>
+  <g font-family="Consolas, Menlo, monospace" font-size="13" fill="#0f172a">
+    <text x="535" y="248">SELECT * FROM invoices</text>
+    <text x="535" y="268">WHERE id = $1 AND tenant_id = $2</text>
+    <text x="535" y="288" fill="#64748b">-- $2 comes from the verified token,</text>
+    <text x="535" y="306" fill="#64748b">-- never from the request body/URL</text>
+  </g>
+  <g font-size="13" fill="#14532d">
+    <text x="535" y="338">• Not found OR not yours → same 404</text>
+    <text x="535" y="360">• Role checks for functions (only admins delete)</text>
+    <text x="535" y="382">• Postgres Row-Level Security as a safety net</text>
+    <text x="535" y="404">• Tests: every endpoint × every role × other tenant</text>
+  </g>
+</svg>
