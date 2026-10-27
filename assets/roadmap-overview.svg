@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="560" fill="#ffffff"/>
+  <text x="600" y="44" text-anchor="middle" font-size="26" font-weight="700" fill="#0f172a">Cybersecurity Roadmap — AppSec + Cloud Security (12 months)</text>
+  <text x="600" y="72" text-anchor="middle" font-size="15" fill="#475569">Learn it → reproduce it safely → fix it → prove the fix → publish evidence</text>
+
+  <!-- Level bands -->
+  <rect x="30" y="100" width="370" height="420" rx="14" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <rect x="415" y="100" width="370" height="420" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="800" y="100" width="370" height="420" rx="14" fill="#fdf2f8" stroke="#db2777" stroke-width="2"/>
+  <text x="215" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#047857">LEVEL 1 · BEGINNER</text>
+  <text x="600" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#1d4ed8">LEVEL 2 · INTERMEDIATE</text>
+  <text x="985" y="132" text-anchor="middle" font-size="19" font-weight="700" fill="#be185d">LEVEL 3 · ADVANCED</text>
+  <text x="215" y="154" text-anchor="middle" font-size="13" fill="#065f46">Weeks 1–16 · understand &amp; break</text>
+  <text x="600" y="154" text-anchor="middle" font-size="13" fill="#1e40af">Weeks 17–32 · prevent &amp; automate</text>
+  <text x="985" y="154" text-anchor="middle" font-size="13" fill="#9d174d">Weeks 33–48 · attack paths, detect, deliver</text>
+
+  <g font-size="14" fill="#0f172a">
+    <!-- Level 1 months -->
+    <rect x="50" y="172" width="330" height="70" rx="10" fill="#ffffff" stroke="#10b981"/>
+    <text x="66" y="200" font-weight="700">M01 · Security Foundations</text>
+    <text x="66" y="222" font-size="12" fill="#475569">Linux · networking · HTTP/TLS · principles · crypto</text>
+    <rect x="50" y="254" width="330" height="70" rx="10" fill="#ffffff" stroke="#10b981"/>
+    <text x="66" y="282" font-weight="700">M02 · Web Security Fundamentals</text>
+    <text x="66" y="304" font-size="12" fill="#475569">OWASP · SQLi · XSS · CSRF · CORS · sessions</text>
+    <rect x="50" y="336" width="330" height="70" rx="10" fill="#ffffff" stroke="#10b981"/>
+    <text x="66" y="364" font-weight="700">M03 · Backend &amp; API Security</text>
+    <text x="66" y="386" font-size="12" fill="#475569">BOLA/IDOR · JWT · OAuth/OIDC · rate limits · tests</text>
+    <rect x="50" y="418" width="330" height="70" rx="10" fill="#ffffff" stroke="#10b981"/>
+    <text x="66" y="446" font-weight="700">M04 · Advanced Web Testing</text>
+    <text x="66" y="468" font-size="12" fill="#475569">SSRF · uploads · XXE · business logic · reports</text>
+
+    <!-- Level 2 months -->
+    <rect x="435" y="172" width="330" height="70" rx="10" fill="#ffffff" stroke="#3b82f6"/>
+    <text x="451" y="200" font-weight="700">M05 · Secure SDLC &amp; Automation</text>
+    <text x="451" y="222" font-size="12" fill="#475569">code review · SAST/SCA · STRIDE · CI gates</text>
+    <rect x="435" y="254" width="330" height="70" rx="10" fill="#ffffff" stroke="#3b82f6"/>
+    <text x="451" y="282" font-weight="700">M06 · Docker, Host &amp; Deployment</text>
+    <text x="451" y="304" font-size="12" fill="#475569">non-root containers · SBOM · hardening · TLS proxy</text>
+    <rect x="435" y="336" width="330" height="70" rx="10" fill="#ffffff" stroke="#3b82f6"/>
+    <text x="451" y="364" font-weight="700">M07 · Cloud Security Foundations</text>
+    <text x="451" y="386" font-size="12" fill="#475569">IAM · VPC · KMS/S3 · CloudTrail · governance</text>
+    <rect x="435" y="418" width="330" height="70" rx="10" fill="#ffffff" stroke="#3b82f6"/>
+    <text x="451" y="446" font-weight="700">M08 · Terraform, Secrets &amp; Delivery</text>
+    <text x="451" y="468" font-size="12" fill="#475569">IaC · Checkov · OIDC · state security</text>
+
+    <!-- Level 3 months -->
+    <rect x="820" y="172" width="330" height="70" rx="10" fill="#ffffff" stroke="#db2777"/>
+    <text x="836" y="200" font-weight="700">M09 · Advanced Cloud Security</text>
+    <text x="836" y="222" font-size="12" fill="#475569">attack paths · Prowler · Kubernetes · validation</text>
+    <rect x="820" y="254" width="330" height="70" rx="10" fill="#ffffff" stroke="#db2777"/>
+    <text x="836" y="282" font-weight="700">M10 · Monitoring &amp; Incident Response</text>
+    <text x="836" y="304" font-size="12" fill="#475569">logging · detections · IR · backup &amp; restore</text>
+    <rect x="820" y="336" width="330" height="70" rx="10" fill="#ffffff" stroke="#db2777"/>
+    <text x="836" y="364" font-weight="700">M11 · End-to-End Assessment</text>
+    <text x="836" y="386" font-size="12" fill="#475569">scope · app &amp; infra testing · CVSS · retest</text>
+    <rect x="820" y="418" width="330" height="70" rx="10" fill="#ffffff" stroke="#db2777"/>
+    <text x="836" y="446" font-weight="700">M12 · Capstone &amp; Career</text>
+    <text x="836" y="468" font-size="12" fill="#475569">secure platform · portfolio · interviews</text>
+  </g>
+
+  <!-- arrows between levels -->
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
+  </defs>
+  <line x1="385" y1="500" x2="430" y2="500" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="770" y1="500" x2="815" y2="500" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+  <text x="215" y="508" text-anchor="middle" font-size="12" font-weight="700" fill="#047857">Gate: Level 1 checkpoint drill ≥ 80%</text>
+  <text x="600" y="508" text-anchor="middle" font-size="12" font-weight="700" fill="#1d4ed8">Gate: Level 2 checkpoint drill ≥ 80%</text>
+  <text x="985" y="508" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d">Gate: Final drill + capstone</text>
+  <text x="600" y="545" text-anchor="middle" font-size="13" fill="#475569">8–12 h/week · 4 h labs · 2 h study · 3 h projects · 1 h write-up</text>
+</svg>

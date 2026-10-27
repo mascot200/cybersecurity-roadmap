@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="900" height="420" fill="#ffffff"/>
+  <defs>
+    <marker id="h" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker>
+  </defs>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">The Weekly Learning Loop (use it for every topic)</text>
+
+  <circle cx="450" cy="225" r="70" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="450" y="218" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">One concept</text>
+  <text x="450" y="240" text-anchor="middle" font-size="13" fill="#475569">per loop</text>
+
+  <g font-size="14">
+    <rect x="345" y="62" width="210" height="62" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="450" y="88" text-anchor="middle" font-weight="700" fill="#1e3a8a">1 · LEARN</text>
+    <text x="450" y="108" text-anchor="middle" font-size="12" fill="#1e3a8a">How does it work?</text>
+
+    <rect x="640" y="160" width="220" height="62" rx="12" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="750" y="186" text-anchor="middle" font-weight="700" fill="#7f1d1d">2 · BREAK (in a lab)</text>
+    <text x="750" y="206" text-anchor="middle" font-size="12" fill="#7f1d1d">How could it be abused?</text>
+
+    <rect x="560" y="320" width="230" height="62" rx="12" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="675" y="346" text-anchor="middle" font-weight="700" fill="#14532d">3 · FIX &amp; DETECT</text>
+    <text x="675" y="366" text-anchor="middle" font-size="12" fill="#14532d">How is it prevented / detected?</text>
+
+    <rect x="110" y="320" width="230" height="62" rx="12" fill="#fef9c3" stroke="#ca8a04"/>
+    <text x="225" y="346" text-anchor="middle" font-weight="700" fill="#713f12">4 · PROVE</text>
+    <text x="225" y="366" text-anchor="middle" font-size="12" fill="#713f12">Regression test / evidence</text>
+
+    <rect x="40" y="160" width="220" height="62" rx="12" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="150" y="186" text-anchor="middle" font-weight="700" fill="#4c1d95">5 · PUBLISH &amp; DRILL</text>
+    <text x="150" y="206" text-anchor="middle" font-size="12" fill="#4c1d95">Write-up + drill ≥ 80%</text>
+  </g>
+
+  <path d="M555,100 Q690,110 730,158" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#h)"/>
+  <path d="M760,224 Q760,290 720,318" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#h)"/>
+  <path d="M558,352 L344,352" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#h)"/>
+  <path d="M180,318 Q140,280 150,226" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#h)"/>
+  <path d="M170,158 Q210,105 343,96" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#h)"/>
+</svg>
