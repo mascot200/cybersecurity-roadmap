@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="470" fill="#ffffff"/>
+  <text x="500" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">OWASP Top 10 (2025) — and where this course covers each</text>
+  <g font-size="14" fill="#0f172a">
+    <rect x="30" y="56" width="940" height="36" rx="6" fill="#0f172a"/>
+    <text x="50" y="80" fill="#ffffff" font-weight="700">ID</text>
+    <text x="120" y="80" fill="#ffffff" font-weight="700">Category</text>
+    <text x="560" y="80" fill="#ffffff" font-weight="700">Typical bug</text>
+    <text x="830" y="80" fill="#ffffff" font-weight="700">Course</text>
+
+    <rect x="30" y="96" width="940" height="34" fill="#fee2e2"/>
+    <text x="50" y="118" font-weight="700">A01</text><text x="120" y="118">Broken Access Control</text><text x="560" y="118">IDOR/BOLA, missing role checks, SSRF</text><text x="830" y="118">M3, M4</text>
+    <rect x="30" y="132" width="940" height="34" fill="#ffedd5"/>
+    <text x="50" y="154" font-weight="700">A02</text><text x="120" y="154">Security Misconfiguration</text><text x="560" y="154">debug on, default creds, open buckets</text><text x="830" y="154">M2 W5, M6, M9</text>
+    <rect x="30" y="168" width="940" height="34" fill="#fee2e2"/>
+    <text x="50" y="190" font-weight="700">A03</text><text x="120" y="190">Software Supply Chain Failures</text><text x="560" y="190">vulnerable/malicious dependencies</text><text x="830" y="190">M5, M6 W22</text>
+    <rect x="30" y="204" width="940" height="34" fill="#ffedd5"/>
+    <text x="50" y="226" font-weight="700">A04</text><text x="120" y="226">Cryptographic Failures</text><text x="560" y="226">weak hashing, no TLS, leaked keys</text><text x="830" y="226">M1 W4, M7</text>
+    <rect x="30" y="240" width="940" height="34" fill="#fee2e2"/>
+    <text x="50" y="262" font-weight="700">A05</text><text x="120" y="262">Injection</text><text x="560" y="262">SQLi, XSS, command injection</text><text x="830" y="262">M2 W6–7</text>
+    <rect x="30" y="276" width="940" height="34" fill="#ffedd5"/>
+    <text x="50" y="298" font-weight="700">A06</text><text x="120" y="298">Insecure Design</text><text x="560" y="298">no threat model, business-logic flaws</text><text x="830" y="298">M1 W3, M4 W15, M5</text>
+    <rect x="30" y="312" width="940" height="34" fill="#fee2e2"/>
+    <text x="50" y="334" font-weight="700">A07</text><text x="120" y="334">Authentication Failures</text><text x="560" y="334">credential stuffing, weak sessions</text><text x="830" y="334">M2 W8, M3 W10</text>
+    <rect x="30" y="348" width="940" height="34" fill="#ffedd5"/>
+    <text x="50" y="370" font-weight="700">A08</text><text x="120" y="370">Software or Data Integrity Failures</text><text x="560" y="370">unsafe deserialization, unsigned code</text><text x="830" y="370">M4 W14, M8</text>
+    <rect x="30" y="384" width="940" height="34" fill="#fee2e2"/>
+    <text x="50" y="406" font-weight="700">A09</text><text x="120" y="406">Security Logging &amp; Alerting Failures</text><text x="560" y="406">no audit trail, no alerts</text><text x="830" y="406">M7 W28, M10</text>
+    <rect x="30" y="420" width="940" height="34" fill="#ffedd5"/>
+    <text x="50" y="442" font-weight="700">A10</text><text x="120" y="442">Mishandling of Exceptional Conditions</text><text x="560" y="442">fail-open errors, leaky stack traces</text><text x="830" y="442">M2 W5, M3 W11</text>
+  </g>
+</svg>
