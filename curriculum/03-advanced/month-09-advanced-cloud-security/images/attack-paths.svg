@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="470" fill="#ffffff"/>
+  <defs>
+    <marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <text x="500" y="32" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">The lab's attack-path graph: one foothold, four paths to sensitive data</text>
+  <text x="500" y="56" text-anchor="middle" font-size="13" fill="#475569">Red ✂ marks the cheapest cuts. Each removes several paths at once (output of labs/attack-paths).</text>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="20" y="150" width="120" height="56" rx="10" fill="#e0f2fe" stroke="#0284c7"/>
+    <text x="80" y="174" text-anchor="middle" font-weight="700">Internet</text>
+    <text x="80" y="192" text-anchor="middle" font-size="11">entry point</text>
+
+    <rect x="175" y="150" width="130" height="56" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <text x="240" y="174" text-anchor="middle" font-weight="700">web task</text>
+    <text x="240" y="192" text-anchor="middle" font-size="11">assumed compromised</text>
+
+    <rect x="340" y="150" width="130" height="56" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="405" y="174" text-anchor="middle" font-weight="700">web-task role</text>
+    <text x="405" y="192" text-anchor="middle" font-size="11">task credentials</text>
+
+    <rect x="510" y="150" width="130" height="56" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <text x="575" y="174" text-anchor="middle" font-weight="700">reports Lambda</text>
+    <text x="575" y="192" text-anchor="middle" font-size="11">code can be replaced</text>
+
+    <rect x="680" y="150" width="130" height="56" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="745" y="174" text-anchor="middle" font-weight="700">reports role</text>
+
+    <rect x="680" y="290" width="130" height="56" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="745" y="314" text-anchor="middle" font-weight="700">admin role</text>
+    <text x="745" y="332" text-anchor="middle" font-size="11">trusts reports role (!)</text>
+
+    <rect x="340" y="290" width="130" height="56" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="405" y="314" text-anchor="middle" font-weight="700">CI deploy role</text>
+    <text x="405" y="332" text-anchor="middle" font-size="11">PassRole on *</text>
+
+    <rect x="340" y="70" width="130" height="50" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="405" y="92" text-anchor="middle" font-weight="700">uploads bucket</text>
+    <text x="405" y="109" text-anchor="middle" font-size="11">sensitive</text>
+
+    <rect x="855" y="150" width="130" height="56" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="920" y="174" text-anchor="middle" font-weight="700">customer DB</text>
+    <text x="920" y="192" text-anchor="middle" font-size="11">secret · sensitive</text>
+
+    <rect x="855" y="290" width="130" height="56" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="920" y="314" text-anchor="middle" font-weight="700">CloudTrail logs</text>
+    <text x="920" y="332" text-anchor="middle" font-size="11">sensitive</text>
+  </g>
+
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <line x1="140" y1="178" x2="170" y2="178" marker-end="url(#g)"/>
+    <line x1="305" y1="178" x2="335" y2="178" marker-end="url(#g)"/>
+    <line x1="405" y1="150" x2="405" y2="125" marker-end="url(#g)"/>
+    <line x1="470" y1="178" x2="505" y2="178" marker-end="url(#g)"/>
+    <line x1="640" y1="178" x2="675" y2="178" marker-end="url(#g)"/>
+    <line x1="810" y1="178" x2="850" y2="178" marker-end="url(#g)"/>
+    <line x1="745" y1="206" x2="745" y2="285" marker-end="url(#g)"/>
+    <line x1="810" y1="318" x2="850" y2="318" marker-end="url(#g)"/>
+    <line x1="800" y1="290" x2="865" y2="210" marker-end="url(#g)"/>
+    <line x1="470" y1="318" x2="675" y2="318" stroke-dasharray="6 4" marker-end="url(#g)"/>
+  </g>
+
+  <g font-size="13" font-weight="700" fill="#dc2626">
+    <text x="473" y="170">✂</text>
+    <text x="750" y="250">✂</text>
+    <text x="560" y="310">✂</text>
+  </g>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="20" y="370" width="960" height="88" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="40" y="394" font-weight="700">Cuts (and paths removed):</text>
+    <text x="40" y="416">✂ web role → lambda:UpdateFunctionCode: remove (web tier never deploys code) → breaks 3 of 4 paths</text>
+    <text x="40" y="436">✂ reports role → assume admin role: remove trust; admins via SSO + MFA only → breaks 2 · ✂ CI PassRole on *: scope to named roles</text>
+    <text x="40" y="452" font-size="12" fill="#475569">The dashed CI path isn't reachable from the internet in this graph, but it is from any CI compromise. Run the tool with --start ci-deploy-role.</text>
+  </g>
+</svg>
