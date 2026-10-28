@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="430" fill="#ffffff"/>
+  <defs><marker id="covArrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker></defs>
+  <text x="500" y="32" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">End-to-end assessment: three areas, one report</text>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="20" y="56" width="960" height="54" rx="12" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="500" y="80" text-anchor="middle" font-weight="700">Week 41 · Rules of engagement → scope → architecture + threat model → test plan (ASVS / WSTG references)</text>
+    <text x="500" y="100" text-anchor="middle" font-size="12">Written authorization first. Non-production environment, synthetic data, stop conditions agreed.</text>
+
+    <rect x="20" y="130" width="300" height="170" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+    <text x="170" y="154" text-anchor="middle" font-weight="700">Week 42 · Application</text>
+    <text x="34" y="180">authentication &amp; sessions</text>
+    <text x="34" y="200">authorization matrix (all roles × tenants)</text>
+    <text x="34" y="220">input validation &amp; limits</text>
+    <text x="34" y="240">business rules &amp; concurrency</text>
+    <text x="34" y="260">dependencies (SCA), code (SAST)</text>
+    <text x="34" y="284" font-size="12" fill="#075985">your test suites + scanners + manual review</text>
+
+    <rect x="350" y="130" width="300" height="170" rx="12" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="500" y="154" text-anchor="middle" font-weight="700">Week 43 · Infrastructure</text>
+    <text x="364" y="180">IAM: least privilege, trust policies</text>
+    <text x="364" y="200">network exposure, segmentation</text>
+    <text x="364" y="220">data: encryption, public access</text>
+    <text x="364" y="240">containers / Kubernetes hardening</text>
+    <text x="364" y="260">logging and detection coverage</text>
+    <text x="364" y="284" font-size="12" fill="#166534">read-only posture tools + negative tests</text>
+
+    <rect x="680" y="130" width="300" height="170" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <text x="830" y="154" text-anchor="middle" font-weight="700">Week 43 · Delivery pipeline</text>
+    <text x="694" y="180">CI identity (OIDC sub conditions)</text>
+    <text x="694" y="200">workflow permissions, pinned actions</text>
+    <text x="694" y="220">secret handling, state protection</text>
+    <text x="694" y="240">branch protection, environments</text>
+    <text x="694" y="260">security gates actually block</text>
+    <text x="694" y="284" font-size="12" fill="#b45309">config review + negative tests</text>
+
+    <rect x="200" y="330" width="600" height="80" rx="12" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="500" y="354" text-anchor="middle" font-weight="700">Week 44 · Report and retest</text>
+    <text x="500" y="376" text-anchor="middle">findings with evidence, CVSS + rationale, root cause, remediation, verification</text>
+    <text x="500" y="396" text-anchor="middle">executive summary · retest every fix · residual risk</text>
+
+    <line x1="170" y1="300" x2="330" y2="345" stroke="#334155" stroke-width="2" marker-end="url(#covArrow)"/>
+    <line x1="500" y1="300" x2="500" y2="326" stroke="#334155" stroke-width="2" marker-end="url(#covArrow)"/>
+    <line x1="830" y1="300" x2="670" y2="345" stroke="#334155" stroke-width="2" marker-end="url(#covArrow)"/>
+  </g>
+</svg>
