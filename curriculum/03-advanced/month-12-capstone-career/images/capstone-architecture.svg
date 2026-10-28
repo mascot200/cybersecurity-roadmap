@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="500" fill="#ffffff"/>
+  <defs><marker id="capArrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker></defs>
+  <text x="500" y="32" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Capstone: every control from the course, in one system</text>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="20" y="60" width="230" height="200" rx="14" fill="#fef3c7" stroke="#d97706"/>
+    <text x="135" y="84" text-anchor="middle" font-weight="700">Source &amp; pipeline</text>
+    <text x="34" y="110">threat model + ASVS reqs (M5, W45)</text>
+    <text x="34" y="132">SAST, SCA, secrets, IaC (M5, M8)</text>
+    <text x="34" y="154">security regression tests (M2–M4)</text>
+    <text x="34" y="176">pinned actions, least-priv tokens</text>
+    <text x="34" y="198">OIDC plan/deploy roles (M8)</text>
+    <text x="34" y="220">protected environment</text>
+    <text x="34" y="242">image scan + SBOM (M6)</text>
+
+    <rect x="280" y="60" width="440" height="300" rx="14" fill="#f8fafc" stroke="#64748b"/>
+    <text x="500" y="84" text-anchor="middle" font-weight="700">Runtime (cloud, Terraform-managed: M7–M8)</text>
+
+    <rect x="300" y="100" width="130" height="80" rx="10" fill="#fef9c3" stroke="#ca8a04"/>
+    <text x="365" y="126" text-anchor="middle" font-weight="700">Edge</text>
+    <text x="365" y="146" text-anchor="middle" font-size="12">TLS, headers,</text>
+    <text x="365" y="162" text-anchor="middle" font-size="12">rate limits (M6)</text>
+
+    <rect x="445" y="100" width="130" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="510" y="126" text-anchor="middle" font-weight="700">Node.js API</text>
+    <text x="510" y="146" text-anchor="middle" font-size="12">authn/z, validation</text>
+    <text x="510" y="162" text-anchor="middle" font-size="12">hardened container</text>
+
+    <rect x="590" y="100" width="115" height="80" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="647" y="126" text-anchor="middle" font-weight="700">PostgreSQL</text>
+    <text x="647" y="146" text-anchor="middle" font-size="12">private, RLS,</text>
+    <text x="647" y="162" text-anchor="middle" font-size="12">encrypted (M3, M7)</text>
+
+    <rect x="300" y="200" width="200" height="70" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="400" y="224" text-anchor="middle" font-weight="700">Identity &amp; secrets</text>
+    <text x="400" y="244" text-anchor="middle" font-size="12">least-priv roles, Secrets Manager,</text>
+    <text x="400" y="260" text-anchor="middle" font-size="12">KMS, IMDSv2 (M7, M8)</text>
+
+    <rect x="515" y="200" width="190" height="70" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="610" y="224" text-anchor="middle" font-weight="700">Network</text>
+    <text x="610" y="244" text-anchor="middle" font-size="12">private subnets, SG-to-SG,</text>
+    <text x="610" y="260" text-anchor="middle" font-size="12">endpoints, flow logs (M7)</text>
+
+    <rect x="300" y="285" width="405" height="60" rx="10" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="502" y="309" text-anchor="middle" font-weight="700">Uploads &amp; outbound requests</text>
+    <text x="502" y="329" text-anchor="middle" font-size="12">content checks, private bucket, presigned URLs, URL guard (M4, M7)</text>
+
+    <line x1="430" y1="140" x2="441" y2="140" stroke="#334155" stroke-width="2" marker-end="url(#capArrow)"/>
+    <line x1="575" y1="140" x2="586" y2="140" stroke="#334155" stroke-width="2" marker-end="url(#capArrow)"/>
+    <line x1="250" y1="160" x2="296" y2="160" stroke="#334155" stroke-width="2" marker-end="url(#capArrow)"/>
+
+    <rect x="750" y="60" width="230" height="140" rx="14" fill="#e0f2fe" stroke="#0284c7"/>
+    <text x="865" y="84" text-anchor="middle" font-weight="700">Detect (M10)</text>
+    <text x="764" y="110">structured, redacted logs</text>
+    <text x="764" y="132">CloudTrail, GuardDuty</text>
+    <text x="764" y="154">tested detections → alerts</text>
+    <text x="764" y="176">runbooks, IR report</text>
+
+    <rect x="750" y="220" width="230" height="140" rx="14" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="865" y="244" text-anchor="middle" font-weight="700">Recover (M10)</text>
+    <text x="764" y="270">verified backups</text>
+    <text x="764" y="292">immutable, other account</text>
+    <text x="764" y="314">timed restore drill</text>
+    <text x="764" y="336">teardown procedure (M8)</text>
+
+    <line x1="720" y1="140" x2="746" y2="130" stroke="#334155" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#capArrow)"/>
+    <line x1="720" y1="250" x2="746" y2="270" stroke="#334155" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#capArrow)"/>
+  </g>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="20" y="380" width="960" height="104" rx="12" fill="#f0fdf4" stroke="#22c55e"/>
+    <text x="40" y="406" font-weight="700">Evidence for every claim</text>
+    <text x="40" y="430">design → threat model + requirements · implement → code + IaC · test → CI results + matrix + negative tests</text>
+    <text x="40" y="452">detect → alert screenshots · respond → IR report · recover → restore timings · assess → report with retests</text>
+    <text x="40" y="474" font-size="12" fill="#166534">Published as a sanitized repository: README, architecture, threat model, assessment report, optional demo video.</text>
+  </g>
+</svg>
