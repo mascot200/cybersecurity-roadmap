@@ -1,0 +1,27 @@
+{
+  "description": "Synthetic lab account. Nodes are identities, workloads and data; edges say what one node can do to reach another.",
+  "nodes": {
+    "internet":            { "type": "entry",     "label": "Internet user" },
+    "web-task":            { "type": "workload",  "label": "Public web task (ECS)" },
+    "web-task-role":       { "type": "role",      "label": "web-task role" },
+    "ci-deploy-role":      { "type": "role",      "label": "CI deploy role" },
+    "reports-lambda":      { "type": "workload",  "label": "Reports Lambda" },
+    "reports-role":        { "type": "role",      "label": "reports role" },
+    "admin-role":          { "type": "role",      "label": "Admin role" },
+    "customer-db-secret":  { "type": "data",      "label": "Customer DB secret", "sensitive": true },
+    "uploads-bucket":      { "type": "data",      "label": "Uploads bucket",     "sensitive": true },
+    "cloudtrail-logs":     { "type": "data",      "label": "CloudTrail logs",    "sensitive": true }
+  },
+  "edges": [
+    { "from": "internet",       "to": "web-task",           "via": "exposed app with a code-execution bug (assumed)", "control": "patching, WAF, AppSec testing" },
+    { "from": "web-task",       "to": "web-task-role",      "via": "task credentials from the metadata endpoint",      "control": "least-privilege task role" },
+    { "from": "web-task-role",  "to": "uploads-bucket",     "via": "s3:GetObject on uploads/*",                        "control": "scope to tenant prefix + presigned URLs" },
+    { "from": "web-task-role",  "to": "reports-lambda",     "via": "lambda:UpdateFunctionCode on reports-*",           "control": "remove: web tier never deploys code" },
+    { "from": "reports-lambda", "to": "reports-role",       "via": "Lambda runs with its execution role",              "control": "least-privilege execution role" },
+    { "from": "reports-role",   "to": "customer-db-secret", "via": "secretsmanager:GetSecretValue",                    "control": "needed: keep, but alert on unusual use" },
+    { "from": "reports-role",   "to": "admin-role",         "via": "sts:AssumeRole on admin-role (trust allows reports-role)", "control": "remove trust: admin only via SSO + MFA" },
+    { "from": "admin-role",     "to": "cloudtrail-logs",    "via": "full admin: can stop logging and delete logs",     "control": "SCP protecting CloudTrail; log archive account" },
+    { "from": "admin-role",     "to": "customer-db-secret", "via": "full admin",                                       "control": "admin via SSO + MFA only" },
+    { "from": "ci-deploy-role", "to": "admin-role",         "via": "iam:PassRole on * + ecs:RunTask",                  "control": "scope PassRole to specific roles" }
+  ]
+}

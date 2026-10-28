@@ -1,0 +1,19 @@
+# Deliberately insecure example for the checker's tests. Never apply this.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bad
+  namespace: default
+spec:
+  hostNetwork: true
+  containers:
+    - name: app
+      image: example/app:latest
+      securityContext:
+        privileged: true
+        allowPrivilegeEscalation: true
+      volumeMounts:
+        - { name: docker-sock, mountPath: /var/run/docker.sock }
+  volumes:
+    - name: docker-sock
+      hostPath: { path: /var/run/docker.sock }
