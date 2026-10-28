@@ -1,0 +1,70 @@
+rules:
+  - id: sql-built-from-template-literal
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: >-
+      SQL text is built with interpolated values. Pass values as query parameters
+      ($1, $2 ...) instead; map identifiers through an allowlist. (Month 2, Week 6)
+    metadata:
+      cwe: "CWE-89: SQL Injection"
+      owasp: "A05:2025 Injection"
+    pattern-either:
+      - pattern: $DB.query(`...${$X}...`, ...)
+      - pattern: $DB.query("..." + $X, ...)
+      - pattern: $DB.query($X + "...", ...)
+
+  - id: request-body-assigned-to-model
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: >-
+      The whole request body is copied onto an object (mass assignment). Validate it
+      with a strict schema and copy only allowlisted fields. (Month 3, Week 11)
+    metadata:
+      cwe: "CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes"
+    pattern-either:
+      - pattern: Object.assign($OBJ, $REQ.body)
+      - pattern: "{ ...$OBJ, ...$REQ.body }"
+
+  - id: jwt-decoded-without-verification
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: >-
+      jwt.decode() does not check the signature. Use a verify function with a pinned
+      algorithm and issuer/audience checks. (Month 3, Week 10)
+    metadata:
+      cwe: "CWE-347: Improper Verification of Cryptographic Signature"
+    pattern: jwt.decode(...)
+
+  - id: session-cookie-without-httponly
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: >-
+      Cookie set without httpOnly: true. Session cookies should be httpOnly, secure
+      and sameSite. (Month 1, Week 4)
+    metadata:
+      cwe: "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag"
+    patterns:
+      - pattern: $RES.cookie($NAME, $VALUE, {...})
+      - pattern-not: "$RES.cookie($NAME, $VALUE, {..., httpOnly: true, ...})"
+
+  - id: cors-allows-any-origin-with-credentials
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: >-
+      CORS reflects any origin while allowing credentials. Use an exact allowlist of
+      trusted origins. (Month 2, Week 7)
+    metadata:
+      cwe: "CWE-942: Permissive Cross-domain Policy with Untrusted Domains"
+    pattern: "cors({..., origin: true, ..., credentials: true, ...})"
+
+  - id: shell-command-from-template-literal
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: >-
+      A shell command is built with interpolated values. Use execFile/spawn with an
+      argument array (no shell) and validate inputs. (Month 2, Week 6)
+    metadata:
+      cwe: "CWE-78: OS Command Injection"
+    pattern-either:
+      - pattern: exec(`...${$X}...`, ...)
+      - pattern: $CP.exec(`...${$X}...`, ...)
