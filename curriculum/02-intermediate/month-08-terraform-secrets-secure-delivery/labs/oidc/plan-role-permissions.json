@@ -1,0 +1,38 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadState",
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::REPLACE-tfstate-111122223333-eu-west-1/invoices/*"
+    },
+    {
+      "Sid": "TakeAndReleaseTheStateLock",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:DeleteObject"],
+      "Resource": "arn:aws:s3:::REPLACE-tfstate-111122223333-eu-west-1/invoices/*.tflock"
+    },
+    {
+      "Sid": "ListStateBucket",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::REPLACE-tfstate-111122223333-eu-west-1"
+    },
+    {
+      "Sid": "ReadLabBuckets",
+      "Effect": "Allow",
+      "Action": ["s3:GetBucket*", "s3:GetEncryptionConfiguration", "s3:GetLifecycleConfiguration",
+                 "s3:GetReplicationConfiguration", "s3:GetAccelerateConfiguration",
+                 "s3:GetBucketObjectLockConfiguration", "s3:ListBucket"],
+      "Resource": "arn:aws:s3:::invoices-lab-*"
+    },
+    {
+      "Sid": "ReadKeysAndIdentity",
+      "Effect": "Allow",
+      "Action": ["kms:DescribeKey", "kms:GetKeyPolicy", "kms:GetKeyRotationStatus",
+                 "kms:ListResourceTags", "kms:ListAliases", "sts:GetCallerIdentity"],
+      "Resource": "*"
+    }
+  ]
+}

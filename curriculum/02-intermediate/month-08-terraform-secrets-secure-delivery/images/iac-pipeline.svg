@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1000" height="440" fill="#ffffff"/>
+  <defs><marker id="p" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker></defs>
+  <text x="500" y="32" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">From code to infrastructure, with no stored cloud keys</text>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="20" y="60" width="150" height="110" rx="12" fill="#e0f2fe" stroke="#0284c7"/>
+    <text x="95" y="86" text-anchor="middle" font-weight="700">Pull request</text>
+    <text x="32" y="110">infra/*.tf change</text>
+    <text x="32" y="130">CODEOWNERS review</text>
+    <text x="32" y="150">branch protection</text>
+
+    <rect x="200" y="60" width="170" height="110" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <text x="285" y="86" text-anchor="middle" font-weight="700">Static checks</text>
+    <text x="212" y="110">terraform fmt / validate</text>
+    <text x="212" y="130">Checkov (blocks HIGH)</text>
+    <text x="212" y="150">no cloud access needed</text>
+
+    <rect x="400" y="60" width="180" height="110" rx="12" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="490" y="86" text-anchor="middle" font-weight="700">Plan (read-only role)</text>
+    <text x="412" y="110">OIDC: pull_request only</text>
+    <text x="412" y="130">can read, can't change</text>
+    <text x="412" y="150">plan reviewed by humans</text>
+
+    <rect x="610" y="60" width="170" height="110" rx="12" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="695" y="86" text-anchor="middle" font-weight="700">Merge to main</text>
+    <text x="622" y="110">env: production</text>
+    <text x="622" y="130">required reviewer</text>
+    <text x="622" y="150">one apply at a time</text>
+
+    <rect x="810" y="60" width="170" height="110" rx="12" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="895" y="86" text-anchor="middle" font-weight="700">Apply (deploy role)</text>
+    <text x="822" y="110">OIDC: production env only</text>
+    <text x="822" y="130">scoped to lab resources</text>
+    <text x="822" y="150">short-lived credentials</text>
+
+    <line x1="170" y1="115" x2="195" y2="115" stroke="#334155" stroke-width="2" marker-end="url(#p)"/>
+    <line x1="370" y1="115" x2="395" y2="115" stroke="#334155" stroke-width="2" marker-end="url(#p)"/>
+    <line x1="580" y1="115" x2="605" y2="115" stroke="#334155" stroke-width="2" marker-end="url(#p)"/>
+    <line x1="780" y1="115" x2="805" y2="115" stroke="#334155" stroke-width="2" marker-end="url(#p)"/>
+  </g>
+
+  <g font-size="13" fill="#0f172a">
+    <rect x="300" y="215" width="400" height="100" rx="12" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="500" y="240" text-anchor="middle" font-weight="700">GitHub OIDC → AWS STS AssumeRoleWithWebIdentity</text>
+    <text x="316" y="264">trust policy: aud = sts.amazonaws.com, and sub =</text>
+    <text x="316" y="284">repo:OWNER/REPO:pull_request  (plan role)</text>
+    <text x="316" y="300">repo:OWNER/REPO:environment:production  (deploy)</text>
+
+    <rect x="20" y="215" width="250" height="150" rx="12" fill="#fff7ed" stroke="#ea580c"/>
+    <text x="145" y="240" text-anchor="middle" font-weight="700">Terraform state (Week 32)</text>
+    <text x="32" y="264">S3: private, SSE-KMS, versioned</text>
+    <text x="32" y="284">native lock file (use_lockfile)</text>
+    <text x="32" y="304">contains secrets in plaintext:</text>
+    <text x="32" y="324">only CI roles + break-glass</text>
+    <text x="32" y="344">access logged in CloudTrail</text>
+
+    <rect x="730" y="215" width="250" height="150" rx="12" fill="#f0fdf4" stroke="#22c55e"/>
+    <text x="855" y="240" text-anchor="middle" font-weight="700">Secrets (Week 31)</text>
+    <text x="742" y="264">no keys in repo or CI variables</text>
+    <text x="742" y="284">app reads Secrets Manager at</text>
+    <text x="742" y="304">runtime via its task role</text>
+    <text x="742" y="324">rotation runbook + tested</text>
+    <text x="742" y="344">gitleaks in CI (Month 5)</text>
+
+    <line x1="490" y1="170" x2="490" y2="210" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#p)"/>
+    <line x1="895" y1="170" x2="700" y2="230" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#p)"/>
+  </g>
+  <text x="500" y="400" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">A PR can see what would change but can't change it. Only reviewed code on main, through an approved environment, can apply.</text>
+  <text x="500" y="424" text-anchor="middle" font-size="13" fill="#475569">Every infrastructure change has a commit, a review, a plan, an approval and a CloudTrail record.</text>
+</svg>

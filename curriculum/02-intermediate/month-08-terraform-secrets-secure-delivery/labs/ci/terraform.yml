@@ -1,0 +1,80 @@
+# .github/workflows/terraform.yml
+# PRs: format, validate, scan, and plan with a READ-ONLY role.
+# main: apply with the deploy role, only through the protected "production" environment.
+# No AWS keys are stored anywhere: GitHub's OIDC token is exchanged for short-lived credentials.
+# Pin actions to full commit SHAs in real projects (Month 5, Week 20).
+name: terraform
+
+on:
+  pull_request:
+    paths: ["infra/**"]
+  push:
+    branches: [main]
+    paths: ["infra/**"]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: infra
+
+jobs:
+  scan:
+    name: Static checks (fmt, validate, Checkov)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -recursive
+      - run: terraform init -backend=false
+      - run: terraform validate
+      - uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: infra
+          framework: terraform
+          soft_fail: false            # HIGH findings block the PR; exceptions are skipped inline with a reason
+
+  plan:
+    name: Plan (read-only role)
+    if: github.event_name == 'pull_request'
+    needs: scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write                 # needed to request the OIDC token
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.TF_PLAN_ROLE_ARN }}
+          aws-region: eu-west-1
+      - run: terraform init -input=false
+      - run: terraform plan -input=false -no-color -out=tfplan
+      - run: terraform show -no-color tfplan > plan.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-text
+          path: infra/plan.txt
+          retention-days: 7
+
+  apply:
+    name: Apply (protected environment)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: scan
+    runs-on: ubuntu-latest
+    environment: production           # required reviewers + only main can deploy (set in repo settings)
+    concurrency: terraform-production # never two applies at once
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.TF_DEPLOY_ROLE_ARN }}
+          aws-region: eu-west-1
+      - run: terraform init -input=false
+      - run: terraform apply -input=false -auto-approve
