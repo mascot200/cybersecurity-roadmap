@@ -1,0 +1,26 @@
+title: Role Elevated To Admin By Non-Admin Actor
+id: 4c9f3a52-8f0e-4d7a-9b6b-2f3d1c0e7a11
+status: experimental
+description: >-
+  An application user's role was changed to admin by an actor who is not an admin.
+  Indicates broken authorization (mass assignment, missing role check) or account misuse.
+references:
+  - https://github.com/mascot200/cybersecurity-roadmap
+author: cybersecurity-roadmap lab
+date: 2026-10-28
+tags:
+  - attack.privilege-escalation
+  - attack.t1098
+logsource:
+  product: invoices_api
+  category: application
+detection:
+  selection:
+    event: role_change
+    new_role: admin
+  filter_admin_actor:
+    actor_role: admin
+  condition: selection and not filter_admin_actor
+falsepositives:
+  - Bootstrap of the first admin in a new tenant (should be a documented, one-time event)
+level: critical
